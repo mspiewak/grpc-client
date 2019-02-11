@@ -16,17 +16,18 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "com._8x8.amd.detector.grpc";
-//option java_outer_classname = "DetectorProto";
 option objc_class_prefix = "HLW";
 
 package detectorservice;
 
 service DetectorService {
-  rpc DetectAnswerMachine (stream Signature) returns (DetectionResult) {}
+  rpc DetectAnswerMachine (stream Sample) returns (DetectionResult) {}
 }
 
-message Signature {
-  string data = 1;
+message Sample {
+  bytes data = 1;
+  string callId = 2;
+  string callDate = 3;
 }
 
 message DetectionResult {
